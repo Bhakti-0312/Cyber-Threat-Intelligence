@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Threat Intelligence System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header class="hero">
+            <p class="eyebrow">NLP-BASED SECURITY LOG ANALYSIS</p>
+            <h1>Cyber Threat Intelligence System</h1>
+            <p class="subtitle">
+                Analyze cybersecurity incident reports using natural language processing.
+            </p>
+        </header>
+
+        <section class="card input-card">
+            <label for="logInput">Security Log / Incident Report</label>
+            <textarea id="logInput" placeholder="Example: Suspicious login detected from 192.168.1.10. Malware file 0xA45B was found in the system."></textarea>
+
+            <div class="actions">
+                <button id="analyzeBtn" onclick="analyzeThreat()">Analyze Threat</button>
+                <button class="secondary" onclick="loadSample()">Load Sample</button>
+                <button class="secondary" onclick="clearAll()">Clear</button>
+            </div>
+
+            <p id="errorMessage" class="error"></p>
+        </section>
+
+        <section id="results" class="results hidden">
+            <div class="card threat-card">
+                <div>
+                    <p class="section-label">PREDICTED THREAT CATEGORY</p>
+                    <h2 id="category">—</h2>
+                </div>
+                <div class="status-dot"></div>
+            </div>
+
+            <div class="grid">
+                <section class="card">
+                    <h3>Processed Text</h3>
+                    <p id="cleanedText" class="mono">—</p>
+                </section>
+
+                <section class="card">
+                    <h3>Noise Removed</h3>
+                    <div id="noiseResults" class="tags"></div>
+                </section>
+            </div>
+
+            <div class="grid">
+                <section class="card">
+                    <h3>Tokens</h3>
+                    <div id="tokens" class="tags"></div>
+                </section>
+
+                <section class="card">
+                    <h3>Stop Words Removed</h3>
+                    <div id="filteredTokens" class="tags"></div>
+                </section>
+            </div>
+
+            <div class="grid">
+                <section class="card">
+                    <h3>Stemming</h3>
+                    <div id="stemmedTokens" class="tags"></div>
+                </section>
+
+                <section class="card">
+                    <h3>Lemmatization</h3>
+                    <div id="lemmatizedTokens" class="tags"></div>
+                </section>
+            </div>
+
+            <div class="grid">
+                <section class="card">
+                    <h3>Important Bigrams</h3>
+                    <div id="bigrams" class="phrase-list"></div>
+                </section>
+
+                <section class="card">
+                    <h3>Important Trigrams</h3>
+                    <div id="trigrams" class="phrase-list"></div>
+                </section>
+            </div>
+
+            <div class="grid">
+                <section class="card">
+                    <h3>POS Tags</h3>
+                    <div id="posTags" class="tags"></div>
+                </section>
+
+                <section class="card">
+                    <h3>Named Entities</h3>
+                    <div id="entities" class="phrase-list"></div>
+                </section>
+            </div>
+
+            <section class="card">
+                <h3>Threat Keyword Matches</h3>
+                <div id="matches" class="match-grid"></div>
+            </section>
+
+            <section class="card">
+                <h3>Category Similarity</h3>
+                <div id="similarity"></div>
+            </section>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
